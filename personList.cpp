@@ -9,15 +9,23 @@ PersonList::PersonList(){
     capacity = 2;
     numPeople = 0;
     theList = new Person*[capacity];
+    for (int i = 0; i < capacity; ++i) {
+        theList[i] = nullptr;
+    }
 }
 
 PersonList::~PersonList(){
-    delete [] theList;
+    for (int i = 0; i < numPeople; ++i) {
+        delete theList[i];
+    }
+    delete[] theList;
+    
+    
 }
 
 void PersonList::addPerson(const char* child_name, const char* father_name, const char* mother_name){
-    Person *father = 0;
-    Person *mother = 0;
+    Person *father = nullptr;
+    Person *mother = nullptr;
     
     // try to find the three names in the theList
     for(int i = 0; i < numPeople; i++){
